@@ -4,6 +4,11 @@ import java.time.LocalDateTime;
 
 import org.antlr.v4.runtime.misc.NotNull;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 
 
 //画面で入力された値をまとめるクラス
@@ -15,7 +20,7 @@ public class TaskForm {
 	
 	//タイトルは1文字以上100文字以下
 	@NotBlank
-	@Size(min = 1,maix = 100)
+	@Size(min = 1,max = 100)
 	private String title;
 	
 	//説明は最大200文字
@@ -29,7 +34,7 @@ public class TaskForm {
 	//ステータスは1から3の範囲
 	@Min(value = 0)
 	@Max(value = 3)
-	private int stastus;
+	private int status;
 	
 	//更新日時
 	private LocalDateTime updateTime;
@@ -66,12 +71,12 @@ public class TaskForm {
 		this.deadline = deadline;
 	}
 
-	public int getStastus() {
-		return stastus;
+	public int getStatus() {
+		return status;
 	}
 
-	public void setStastus(int stastus) {
-		this.stastus = stastus;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public LocalDateTime getUpdateTime() {

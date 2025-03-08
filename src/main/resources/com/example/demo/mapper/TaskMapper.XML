@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "C:\tools\workspace-spring-tool-suite-4-4.28.1.RELEASE\toodoo\src\main\resources\mybatis-3-mapper.dtd
+
+">
 <mapper namespace="com.example.demo.mapper.TaskMapper">
-	
+
+<!-- TaskMapper.javaと同じファイル構造にこのTaskMapper.XMLを置くことで 自動でインターフェースとXMLファイルがマッピングされる 
+	あとでコメント付けて復習する -->
+
 	<select id="findAll" resultType="com.example.demo.entity.Task">
-		SELECT * FROM task where deleteFlg = 0;
+		SELECT * FROM task where
+		deleteFlg = 0;
 	</select>
-    
+	
+	<insert id="save">
+<!-- 新規タスクの登録 -->
+	INSERT INTO task
+	(title, description, deadline, status,created_at,updated_at, deleteFlg)
+	VALUES
+	(#{title}, #{description}, #{deadline}, 1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0);
+</insert>
+
 </mapper>
 
 
-<!-- TaskMapper.javaと同じファイル構造にこのTaskMapper.XMLを置くことで
-自動でインターフェースとXMLファイルがマッピングされる 
-あとでコメント付けて復習する
--->
+
+
+
+

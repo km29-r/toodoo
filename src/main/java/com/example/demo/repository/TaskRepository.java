@@ -23,5 +23,9 @@ public class TaskRepository {
 		return taskMapper.findAll();
 	}
 	
+    public void save(Task task) {
+        taskMapper.save(task);
+    }
+
 	
 }
