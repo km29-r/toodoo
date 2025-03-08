@@ -22,13 +22,13 @@ public interface TaskService {// interfaceは実装を追加したり変更し�
      * @return タスクのリスト
      */
 	
-	@Override
-	@Transactional
-	public String save(TaskForm taskForm) {
-		
-		return ;
-	}
-
 	List<Task> findAll();
+	
+	String save(TaskForm taskForm);
+	
+    Task convertToTask(TaskForm taskForm);
+
+
+
 
 }
