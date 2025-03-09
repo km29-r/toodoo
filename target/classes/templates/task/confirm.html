@@ -29,6 +29,10 @@
 			<input type="hidden" name="title" th:field="*{title}">//追記部分
 			<input type="hidden" name="description" th:field="*{description}">//追記部分
 			<input type="hidden" name="deadline" th:field="*{deadline}">//追記部分
+			<input type="hidden" name="taskId" th:field="*{taskId}"> <input
+				type="hidden" name="status" th:field="*{status}"> <input
+				type="hidden" name="updatedAt" th:value="*{updatedAt}">
+			<!-- 送信ボタン -->
 			<button type="submit" class="btn btn-primary me-2" value="submit">submit</button>
 
 			<div class="px-4 pt-3 my-3">
@@ -53,6 +57,12 @@
 					<p
 						th:text="${#temporals.format(taskForm.deadline, 'yyyy/MM/dd HH:mm')}">Formatted
 						Deadline</p>
+				</div>
+				<!-- ステータスの入力欄を追加 -->
+				<div class="mb-3" th:if="${taskForm.taskId} !=0">
+					<label>Status</label>
+					<p
+						th:text="${taskForm.status == 1 ? '未着手' : taskForm.status == 2 ? '作業中' : '完了'}">Status</p>
 				</div>
 			</div>
 

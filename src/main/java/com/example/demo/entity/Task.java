@@ -68,13 +68,13 @@ public class Task {
     /**
      * タスクの更新日時（更新時に現在の日時に自動設定）。
      */
-	private LocalDateTime updateTime;
+	private LocalDateTime updateAt;
 
 	// 作成日時
     /**
      * タスクの作成日時（デフォルトは現在の日時）。
      */
-	private LocalDateTime createTime;
+	private LocalDateTime createAt;
 
 	// ここから下のメソッド、getだけだったりsetだけだったりした。戻り値指定してなかったり、引数指定してなかったりもした
 	// getterとsetterについての理解が浅い
@@ -136,20 +136,20 @@ public class Task {
 		this.deleteFlg = deleteFlg;
 	}
 
-	public LocalDateTime getUpdateTime() {
-		return updateTime;
+	public LocalDateTime getUpdatedAt() {
+		return updateAt;
 	}
 
-	public void setUpdateTime(LocalDateTime updateTime) {
-		this.updateTime = updateTime;
+	public void setUpdateTime(LocalDateTime updateAt) {
+		this.updateAt = updateAt;
 	}
 
 	public LocalDateTime getCreateTime() {
-		return createTime;
+		return createAt;
 	}
 
-	public void setCreateTime(LocalDateTime createTime) {
-		this.createTime = createTime;
+	public void setCreateTime(LocalDateTime createAt) {
+		this.createAt = createAt;
 	}
 
 }

@@ -28,7 +28,9 @@ public interface TaskService {// interfaceは実装を追加したり変更し�
 	
     Task convertToTask(TaskForm taskForm);
 
+	TaskForm getTask(int taskId);
 
+	TaskForm convertToTaskForm(Task task);//entityオブジェクトからformオブジェクトに変換
 
 
 }

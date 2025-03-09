@@ -12,4 +12,8 @@ public interface TaskMapper {
 	
 	void save(Task task);
 
+	Task getTask(int taskId);
+
+	int update(Task task);
+
 }
