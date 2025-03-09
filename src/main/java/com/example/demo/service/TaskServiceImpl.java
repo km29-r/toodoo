@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,55 +12,91 @@ import com.example.demo.entity.Task;
 import com.example.demo.form.TaskForm;
 import com.example.demo.repository.TaskRepository;
 
-
 /**
- * タスク関連のビジネスロジックを担当するサービスクラスです。
- * タスクの検索、保存、更新などの機能を提供します。
+ * タスク関連のビジネスロジックを担当するサービスクラスです。 タスクの検索、保存、更新などの機能を提供します。
  */
 
 @Service
-public class TaskServiceImpl implements TaskService{
-	
-	//フィールドインジェクション
+public class TaskServiceImpl implements TaskService {
+
+	// フィールドインジェクション
 	@Autowired
-	TaskRepository taskRepository;//repositoryクラスのメソッドを呼び出すため、repositoryクラスのオブジェクト
+	TaskRepository taskRepository;// repositoryクラスのメソッドを呼び出すため、repositoryクラスのオブジェクト
 
 	/**
 	 * タスク一覧を取得するメソッドです。
 	 *
 	 * @return List<Task> タスク一覧。
 	 */
-	
+
 	@Override
-	public List<Task> findAll(){
+	public List<Task> findAll() {
 		return taskRepository.findAll();
 	}
-	
+
 	@Override
 	@Transactional
 	public String save(TaskForm taskForm) {
-		//変換処理
+		// 変換処理
 		Task task = convertToTask(taskForm);
-		
-		//登録処理の場合
-		taskRepository.save(task);
 
-		//完了メッセージをセット
-		String completeMessage = Constants.REGISTER_COMPLETE;
-		return completeMessage;
+		if (task.getTaskId() != 0) {
+			// 変換処理の場合
+
+			// 楽観ロック
+			int updateCount = taskRepository.update(task);
+			if (updateCount == 0) {
+				throw new OptimisticLockingFailureException("楽観ロックエラー");
+			}
+			// 完了メッセージをセット
+			String completeMessage = Constants.EDIT_COMPLETE;
+			return completeMessage;
+		} else {
+			// 登録処理の場合
+			taskRepository.save(task);
+
+			// 完了メッセージをセット
+			String completeMessage = Constants.REGISTER_COMPLETE;
+			return completeMessage;
+
+		}
+
 	}
-	
+
 	@Override
 	public Task convertToTask(TaskForm taskForm) {
-	    Task task = new Task();
-	    task.setTaskId(taskForm.getTaskId());
-	    task.setTitle(taskForm.getTitle());
-	    task.setDescription(taskForm.getDescription());
-	    task.setDeadline(taskForm.getDeadline());
-	    task.setStatus(taskForm.getStatus());
-	    task.setUpdateTime(taskForm.getUpdateTime());
-	    return task;
-	    }
+		Task task = new Task();
+		task.setTaskId(taskForm.getTaskId());
+		task.setTitle(taskForm.getTitle());
+		task.setDescription(taskForm.getDescription());
+		task.setDeadline(taskForm.getDeadline());
+		task.setStatus(taskForm.getStatus());
+		task.setUpdateTime(taskForm.getUpdatedAt());
+		return task;
+	}
 
+	@Override
+	public TaskForm getTask(int taskId) {
+		// タスクを取得
+		Task task = taskRepository.getTask(taskId);
+
+		// 変換処理
+		TaskForm taskForm = convertToTaskForm(task);
+
+		return taskForm;
+	}
+
+	@Override
+	public TaskForm convertToTaskForm(Task task) {
+
+		TaskForm taskForm = new TaskForm();
+		taskForm.setTaskId(task.getTaskId());
+		taskForm.setTitle(task.getTitle());
+		taskForm.setDescription(task.getDescription());
+		taskForm.setDeadline(task.getDeadline());
+		taskForm.setStatus(task.getStatus());
+		taskForm.setUpdatedAt(task.getUpdatedAt());
+		return taskForm;
+	}
 
 }

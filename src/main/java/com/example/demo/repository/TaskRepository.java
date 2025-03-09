@@ -27,5 +27,15 @@ public class TaskRepository {
         taskMapper.save(task);
     }
 
+	public Task getTask(int taskId) {
+		// TODO 自動生成されたメソッド・スタブ
+		return taskMapper.getTask(taskId);
+	}
+
+	public int update(Task task) {
+		// TODO 自動生成されたメソッド・スタブ
+		return taskMapper.update(task);
+	}
+
 	
 }

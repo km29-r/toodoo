@@ -37,7 +37,7 @@ public class TaskForm {
 	private int status;
 	
 	//更新日時
-	private LocalDateTime updateTime;
+	private LocalDateTime updatedAt;
 
 	public int getTaskId() {
 		return taskId;
@@ -79,12 +79,12 @@ public class TaskForm {
 		this.status = status;
 	}
 
-	public LocalDateTime getUpdateTime() {
-		return updateTime;
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
 	}
 
-	public void setUpdateTime(LocalDateTime updateTime) {
-		this.updateTime = updateTime;
+	public void setUpdatedAt(LocalDateTime updateAt) {
+		this.updatedAt = updateAt;
 	}
 	
 	
