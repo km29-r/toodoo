@@ -42,12 +42,12 @@ public class TaskServiceImpl implements TaskService {
 
 		if (task.getTaskId() != 0) {
 			// 変換処理の場合
-
+			taskRepository.update(task);
 			// 楽観ロック
-			int updateCount = taskRepository.update(task);
-			if (updateCount == 0) {
-				throw new OptimisticLockingFailureException("楽観ロックエラー");
-			}
+//			int updateCount = taskRepository.update(task);
+//			if (updateCount == 0) {
+//				throw new OptimisticLockingFailureException("楽観ロックエラー");
+//			}
 			// 完了メッセージをセット
 			String completeMessage = Constants.EDIT_COMPLETE;
 			return completeMessage;
@@ -71,7 +71,7 @@ public class TaskServiceImpl implements TaskService {
 		task.setDescription(taskForm.getDescription());
 		task.setDeadline(taskForm.getDeadline());
 		task.setStatus(taskForm.getStatus());
-		task.setUpdateTime(taskForm.getUpdatedAt());
+		task.setUpdatedAt(taskForm.getUpdatedAt());
 		return task;
 	}
 

@@ -9,7 +9,7 @@ import com.example.demo.entity.Task;
 @Mapper
 public interface TaskMapper {
 	List<Task> findAll();
-	
+
 	void save(Task task);
 
 	Task getTask(int taskId);
