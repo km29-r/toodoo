@@ -18,67 +18,67 @@ import lombok.Setter;
  */
 
 public class Task {
-	
-    @Id // ✅ 主キーを指定
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // ✅ 自動採番
-	
+
+	@Id // ✅ 主キーを指定
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // ✅ 自動採番
+
 	// タスクID
-    /**
-     * タスクID（自動インクリメントされる一意の識別子）。
-     */
+	/**
+	 * タスクID（自動インクリメントされる一意の識別子）。
+	 */
 	private int taskId;
 
 	// タイトル
-    /**
-     * タスクのタイトル。
-     */
+	/**
+	 * タスクのタイトル。
+	 */
 	private String title;
 
 	// 説明
-    /**
-     * タスクの説明。
-     */
+	/**
+	 * タスクの説明。
+	 */
 	private String description;
 
 	// 期限
-    /**
-     * タスクの締め切り日時。
-     */
+	/**
+	 * タスクの締め切り日時。
+	 */
 	private LocalDateTime deadline;
 
 	// ステータス
-    /**
-     * タスクのステータス（例: 1 - 未着手, 2 - 作業中, 3 - 完了）。
-     */
+	/**
+	 * タスクのステータス（例: 1 - 未着手, 2 - 作業中, 3 - 完了）。
+	 */
 	private int status;
 
 	// ユーザーID
-    /**
-     * ユーザーID（タスクを所有するユーザーの識別子）。
-     */
+	/**
+	 * ユーザーID（タスクを所有するユーザーの識別子）。
+	 */
 	private int userId;
 
 	// 削除フラグ
-    /**
-     * 削除フラグ（タスクが削除されたかどうかを示す）。
-     */
-	private boolean deleteFlg;
+	/**
+	 * 削除フラグ（タスクが削除されたかどうかを示す）。
+	 */
+	private boolean delete_Flg;
 
 	// 更新日時
-    /**
-     * タスクの更新日時（更新時に現在の日時に自動設定）。
-     */
-	private LocalDateTime updateAt;
+	/**
+	 * タスクの更新日時（更新時に現在の日時に自動設定）。
+	 */
+	private LocalDateTime updatedAt;
 
 	// 作成日時
-    /**
-     * タスクの作成日時（デフォルトは現在の日時）。
-     */
-	private LocalDateTime createAt;
+	/**
+	 * タスクの作成日時（デフォルトは現在の日時）。
+	 */
+	private LocalDateTime createdAt;
 
 	// ここから下のメソッド、getだけだったりsetだけだったりした。戻り値指定してなかったり、引数指定してなかったりもした
 	// getterとsetterについての理解が浅い
-	//てかgetter・setter自動生成の機能忘れてた。右クリ、ソース、gettersetter生成で行ける。まあ理解深められて良い機会だ
+	// てかgetter・setter自動生成の機能忘れてた。右クリ、ソース、gettersetter生成で行ける。まあ理解深められて良い機会だ
 
 	public int getTaskId() {
 		return taskId;
@@ -129,27 +129,27 @@ public class Task {
 	}
 
 	public boolean getDeleteFlg() {
-		return deleteFlg;
+		return delete_Flg;
 	}
 
 	public void setDeleteFlg(boolean deleteFlg) {
-		this.deleteFlg = deleteFlg;
+		this.delete_Flg = deleteFlg;
 	}
 
 	public LocalDateTime getUpdatedAt() {
-		return updateAt;
+		return updatedAt;
 	}
 
-	public void setUpdateTime(LocalDateTime updateAt) {
-		this.updateAt = updateAt;
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 
-	public LocalDateTime getCreateTime() {
-		return createAt;
+	public LocalDateTime getCreatedTime() {
+		return createdAt;
 	}
 
-	public void setCreateTime(LocalDateTime createAt) {
-		this.createAt = createAt;
+	public void setCreatedTime(LocalDateTime createAt) {
+		this.createdAt = createAt;
 	}
 
 }

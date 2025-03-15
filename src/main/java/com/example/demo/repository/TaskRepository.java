@@ -9,23 +9,20 @@ import com.example.demo.mapper.TaskMapper;
 
 @Repository
 public class TaskRepository {
-	
 
-	
 	private final TaskMapper taskMapper;
-	
-	
-	public TaskRepository(TaskMapper taskMapper) {//Mapperクラスの関数を使いたいので、mapperクラスのオブジェクトを作成したいので、インジェクション
+
+	public TaskRepository(TaskMapper taskMapper) {// Mapperクラスの関数を使いたいので、mapperクラスのオブジェクトを作成したいので、インジェクション
 		this.taskMapper = taskMapper;
 	}
-	
-	public List<Task> findAll(){
+
+	public List<Task> findAll() {
 		return taskMapper.findAll();
 	}
-	
-    public void save(Task task) {
-        taskMapper.save(task);
-    }
+
+	public void save(Task task) {
+		taskMapper.save(task);
+	}
 
 	public Task getTask(int taskId) {
 		// TODO 自動生成されたメソッド・スタブ
@@ -37,5 +34,4 @@ public class TaskRepository {
 		return taskMapper.update(task);
 	}
 
-	
 }
