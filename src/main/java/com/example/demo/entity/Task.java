@@ -64,7 +64,7 @@ public class Task {
 	 * 削除フラグ（タスクが削除されたかどうかを示す）。
 	 */
 	@Column(columnDefinition = "boolean default false")
-	private boolean delete_flg;
+	private boolean deleteFlg;
 
 	// 更新日時
 	/**
@@ -131,11 +131,11 @@ public class Task {
 	}
 
 	public boolean getDeleteFlg() {
-		return delete_flg;
+		return deleteFlg;
 	}
 
 	public void setDeleteFlg(boolean deleteFlg) {
-		this.delete_flg = deleteFlg;
+		this.deleteFlg = deleteFlg;
 	}
 
 	public LocalDateTime getUpdatedAt() {
