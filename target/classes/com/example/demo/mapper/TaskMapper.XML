@@ -8,13 +8,13 @@
 		あとでコメント付けて復習する -->
 
 	<select id="findAll" resultType="com.example.demo.entity.Task">
-		SELECT * FROM tutorialtodoapplication.task WHERE
+		SELECT * FROM public.task WHERE
 		delete_flg = false;
 	</select>
 
 	<insert id="save">
 		<!-- 新規タスクの登録 -->
-		INSERT INTO tutorialtodoapplication.task
+		INSERT INTO public.task
 		(title, description, deadline,
 		status,created_at,updated_at, delete_flg)
 		VALUES
@@ -25,19 +25,20 @@
 
 	<!-- タスクIDを指定してタスクを取得 -->
 	<select id="getTask" resultType="com.example.demo.entity.Task">
-		SELECT * FROM tutorialtodoapplication.task WHERE taskId
+		SELECT * FROM public.task WHERE taskId
 		= #{taskId} and delete_flg = false;
 	</select>
+	<!-- WHERE taskIdとしていたが、DBの実際のカラム名はtask_id そんなことなかった-->
 
 	<!-- タスクの更新 -->
 	<update id="update" parameterType="com.example.demo.entity.Task">
-		UPDATE tutorialtodoapplication.task
+		UPDATE public.task
 		SET title = #{title},
 		description = #{description},
 		deadline = #{deadline},
 		status = #{status},
 		updated_at = CURRENT_TIMESTAMP
-		WHERE taskId = #{taskId}
+		WHERE taskId = #{taskId}<!-- task_idがtaskIdのままだった そんなことなかった-->
 		<!-- AND updated_at = #{updatedAt} -->
 		;
 	</update>

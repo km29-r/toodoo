@@ -67,6 +67,10 @@ public class TaskController {
 
 	@GetMapping(value = "/task/edit")
 	public String showEditForm(@RequestParam("taskId") int taskId, Model model) {
+	    //edit画面に行くとtaskIdが0になってエラーが出るので下記を追加
+		if (taskId <= 0) { // 0以下のIDはエラーにする
+	        throw new IllegalArgumentException("Invalid taskId: " + taskId);
+	    }
 		// タスクIDに基づいてタスクを取得
 		TaskForm taskForm = taskService.getTask(taskId);
 

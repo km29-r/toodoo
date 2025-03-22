@@ -66,8 +66,12 @@
 						<!-- 
                     <td><a class="btn btn-primary" href="/task/edit/1">edit</a></td>
                      taskIdをクエリとしてもたせるようにhrefを書き換え-->
-						<td><a class="btn btn-primary"
-							th:href="@{/task/edit(taskId=${taskList.taskId})}">edit</a></td>
+						<!-- th:each を使用して taskList をループし、各タスクの taskId を取得するように修正
+                     th:each="task : ${taskList}"したのをやっぱり削除 -->
+						<!-- <td><a class="btn btn-primary"  th:href="@{/task/edit(taskId=*{taskList.taskId})}">edit</a></td>
+						 -->
+						<td><a class="btn btn-primary" th:href="@{/task/edit(taskId=*{taskId})}">edit</a></td>
+
 						<td><a class="btn btn-primary" href="/task/delete/1">delete</a></td>
 					</tr>
 
