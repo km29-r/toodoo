@@ -70,7 +70,7 @@ Thymeleafの名前空間を追加する理由は、HTMLテンプレートエン�
 					th:errors="*{deadline}" class="text-danger"></div>
 				<div class="text-danger"></div>
 			</div>
-			<div class="form-group mb-3" th:if="${taskForm.taskId} !=0">
+			<div class="form-group mb-3" th:if="${taskForm.taskId != 0}">
 				<!-- !=0で表示非表示をコントロール -->
 				<label>status</label> <select name="status">
 					<option value="1" th:selected="*{status == 1}">未着手</option>

@@ -24,9 +24,14 @@ public class TaskRepository {
 		taskMapper.save(task);
 	}
 
+	//ここでnullを返してしまっているっぽい
 	public Task getTask(int taskId) {
 		// TODO 自動生成されたメソッド・スタブ
-		return taskMapper.getTask(taskId);
+		Task task = taskMapper.getTask(taskId);
+	    if (task == null) {
+	        throw new RuntimeException("Task not found for ID: " + taskId);
+	    }//nullの場合例外を投げるように処理
+		return task;
 	}
 
 	public int update(Task task) {

@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -62,7 +63,8 @@ public class Task {
 	/**
 	 * 削除フラグ（タスクが削除されたかどうかを示す）。
 	 */
-	private boolean delete_Flg;
+	@Column(columnDefinition = "boolean default false")
+	private boolean delete_flg;
 
 	// 更新日時
 	/**
@@ -129,11 +131,11 @@ public class Task {
 	}
 
 	public boolean getDeleteFlg() {
-		return delete_Flg;
+		return delete_flg;
 	}
 
 	public void setDeleteFlg(boolean deleteFlg) {
-		this.delete_Flg = deleteFlg;
+		this.delete_flg = deleteFlg;
 	}
 
 	public LocalDateTime getUpdatedAt() {

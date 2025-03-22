@@ -39,27 +39,32 @@ public class TaskServiceImpl implements TaskService {
 	public String save(TaskForm taskForm) {
 		// 変換処理
 		Task task = convertToTask(taskForm);
+		System.out.println("taskId = " + task.getTaskId()); // デバッグ用
 
-		if (task.getTaskId() != 0) {
-			// 変換処理の場合
-			taskRepository.update(task);
+		// 完了メッセージを宣言
+		String completeMessage = null;
+
+		if (task.getTaskId() != 0) {// task.getTaskId()が0になっているからfalseになってeditしても新規登録になってしまう
+			// 変換処理の場合 真下と被ってるからいらない。そもそも何故書いてあった？
+//			taskRepository.update(task);
 			// 楽観ロック
-//			int updateCount = taskRepository.update(task);
-//			if (updateCount == 0) {
-//				throw new OptimisticLockingFailureException("楽観ロックエラー");
-//			}
+			int updateCount = taskRepository.update(task);
+			if (updateCount == 0) {
+				throw new OptimisticLockingFailureException("楽観ロックエラー");
+			}
 			// 完了メッセージをセット
-			String completeMessage = Constants.EDIT_COMPLETE;
-			return completeMessage;
+			completeMessage = Constants.EDIT_COMPLETE;
+//			return completeMessage;ここいらない？
 		} else {
 			// 登録処理の場合
 			taskRepository.save(task);
 
 			// 完了メッセージをセット
-			String completeMessage = Constants.REGISTER_COMPLETE;
-			return completeMessage;
+			completeMessage = Constants.REGISTER_COMPLETE;
+//			return completeMessage;書く場所違う？if文の外
 
 		}
+		return completeMessage;
 
 	}
 
