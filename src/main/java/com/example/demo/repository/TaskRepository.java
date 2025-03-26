@@ -39,4 +39,11 @@ public class TaskRepository {
 		return taskMapper.update(task);
 	}
 
+	public int delete(int taskId) {
+		// TODO 自動生成されたメソッド・スタブ
+		//データベースとのやり取りを行う。Ｍａｐｐｅｒクラスを介してSQLクエリを定義
+		return taskMapper.delete(taskId);
+		
+	}
+
 }

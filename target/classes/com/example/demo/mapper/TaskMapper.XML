@@ -42,6 +42,10 @@
 		<!-- AND updated_at = #{updatedAt} -->
 		;
 	</update>
+	
+	<delete id="delete">
+		DELETE FROM task where taskId = #{taskId} and deleteFlg = false;
+	</delete>
 </mapper>
 
 
