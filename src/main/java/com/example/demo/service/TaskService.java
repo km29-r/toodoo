@@ -29,4 +29,6 @@ public interface TaskService {// interfaceは実装を追加したり変更し�
 
 	TaskForm convertToTaskForm(Task task);// entityオブジェクトからformオブジェクトに変換
 
+	String delete(int taskId);
+
 }

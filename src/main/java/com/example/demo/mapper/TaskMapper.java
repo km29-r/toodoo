@@ -16,4 +16,6 @@ public interface TaskMapper {
 
 	int update(Task task);
 
+	int delete(int taskId);//なぜint？
+
 }

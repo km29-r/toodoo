@@ -103,5 +103,17 @@ public class TaskServiceImpl implements TaskService {
 		taskForm.setUpdatedAt(task.getUpdatedAt());
 		return taskForm;
 	}
+	
+	//deleteメソッドを実装
+	@Override
+	@Transactional
+	public String delete(int taskId) {
+		//削除処理。Repositoｒｙクラスを介してデータベースとのやり取りを行う
+		taskRepository.delete(taskId);
+		
+		//完了メッセージをセット
+		String completeMessage = Constants.DELETE_COMPLETE;
+		return completeMessage;
+	}
 
 }

@@ -67,10 +67,10 @@ public class TaskController {
 
 	@GetMapping(value = "/task/edit")
 	public String showEditForm(@RequestParam("taskId") int taskId, Model model) {
-	    //edit画面に行くとtaskIdが0になってエラーが出るので下記を追加
+		// edit画面に行くとtaskIdが0になってエラーが出るので下記を追加
 		if (taskId <= 0) { // 0以下のIDはエラーにする
-	        throw new IllegalArgumentException("Invalid taskId: " + taskId);
-	    }
+			throw new IllegalArgumentException("Invalid taskId: " + taskId);
+		}
 		// タスクIDに基づいてタスクを取得
 		TaskForm taskForm = taskService.getTask(taskId);
 
@@ -112,6 +112,30 @@ public class TaskController {
 	@GetMapping("/task/complete")
 	public String showCompletePage() {
 		return "task/complete";
+	}
+
+	//削除確認画面を表示するためのメソッド。編集のやつを流用
+	@GetMapping(value = "/task/delete")
+	public String showDeleteForm(@RequestParam("taskId") int taskId, Model model) {
+		
+		//タスクIDに基づいてタスクを取得
+		TaskForm taskForm = taskService.getTask(taskId);
+		
+		model.addAttribute("taskForm", taskForm);
+		return "task/deleteConfirm";
+	}
+
+	//削除処理を実行するためのメソッド
+	@PostMapping(value = "/task/delete")
+	public String deleteTask(@RequestParam("taskId") int taskId, RedirectAttributes redirectAttributes,Model model) {
+		
+		//保存処理
+		String completeMessage = taskService.delete(taskId);
+		
+		//redirect先に値を渡す
+		redirectAttributes.addFlashAttribute("completeMessage", completeMessage);
+		
+		return "redirect:/task/complete";
 	}
 
 }
