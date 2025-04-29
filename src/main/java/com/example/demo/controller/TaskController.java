@@ -137,5 +137,12 @@ public class TaskController {
 		
 		return "redirect:/task/complete";
 	}
+	//戻る画面
+	@GetMapping(value = "/task/back")
+	public String backToEditPage(TaskForm taskForm, Model model) {
+		
+		model.addAttribute("taskForm", taskForm);
+		return "task/edit";
+	}
 
 }

@@ -66,15 +66,30 @@
 				</div>
 			</div>
 
-			<div class="d-flex justify-content-start">
-				<form method="post" class="mb-3">
-					<input type="hidden" name="title"> <input type="hidden"
-						name="description"> <input type="hidden" name="deadline">
-					<!-- 送信ボタン -->
-					<button type="submit" class="btn btn-primary me-2" value="submit">submit</button>
-				</form>
-				<button type="submit" class="btn btn-outline-secondary">back</button>
-			</div>
+
+
+        <div class="d-flex justify-content-start">
+            <form th:action="@{/task/save}" method="post" th:object="${taskForm}"class="mb-3">
+                <input type="hidden" name="title" th:field="*{title}">
+                <input type="hidden" name="description" th:field="*{description}">
+                <input type="hidden" name="deadline" th:field="*{deadline}">
+                <input type="hidden" name="taskId" th:field="*{taskId}">
+                <input type="hidden" name="status" th:field="*{status}">
+                <input type="hidden" name="updatedAt" th:value="*{updatedAt}">
+                <!-- 送信ボタン -->
+                <button type="submit" class="btn btn-primary me-2" value="submit">submit</button>
+            </form> 
+            <form th:action="@{/task/back}" method="get" th:object="${taskForm}">
+				<input type="hidden" name="title" th:field="*{title}">
+    			<input type="hidden" name="description" th:field="*{description}">
+    			<input type="hidden" name="deadline" th:field="*{deadline}">
+    			<input type="hidden" name="taskId" th:field="*{taskId}">
+    			<input type="hidden" name="status" th:field="*{status}">
+    			<input type="hidden" name="updatedAt" th:value="*{updatedAt}">
+    			<button type="submit" class="btn btn-outline-secondary">back</button>
+		    </form>
+        </div>
+			
 		</form>
 	</div>
 
