@@ -84,7 +84,7 @@ Thymeleafの名前空間を追加する理由は、HTMLテンプレートエン�
 				type="hidden" name="updatedAt" th:value="*{updatedAt}">
 			<!-- 送信ボタン -->
 			<button type="submit" class="btn btn-primary" value="Confirm">Confirm</button>
-			<a type="button" class="btn btn-outline-secondary" href="/task/list">back</a>
+			<a type="button" class="btn btn-outline-secondary" th:href="@{/task/list}">back</a>
 		</form>
 	</div>
 
