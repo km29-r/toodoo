@@ -100,13 +100,24 @@ public class TaskController {
 			return "task/edit";
 		}
 
-		// 保存処理
-		String completeMessage = taskService.save(taskForm);
-
-		// redirect先に値を渡す
-		redirectAttributes.addFlashAttribute("completeMessage", completeMessage);
-
-		return "redirect:/task/complete";
+//		// 保存処理
+//		String completeMessage = taskService.save(taskForm);
+//
+//		// redirect先に値を渡す
+//		redirectAttributes.addFlashAttribute("completeMessage", completeMessage);
+//
+//		return "redirect:/task/complete";
+		
+	    // 保存処理
+	    try {
+	        String completeMessage = taskService.save(taskForm);
+	        redirectAttributes.addFlashAttribute("completeMessage", completeMessage);
+	        return "redirect:/task/complete";
+	    } catch (Exception e) {
+	        // 例外発生時にエラーメッセージを出力
+	        e.printStackTrace();
+	        return "task/edit";  // 編集画面に戻る
+	    }
 	}
 
 	@GetMapping("/task/complete")
@@ -149,6 +160,8 @@ public class TaskController {
 	public String index() {
 	    return "task/index";
 	}
+	
+	
 
 
 }
