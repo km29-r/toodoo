@@ -85,4 +85,9 @@ public class TaskForm {
 		this.updatedAt = updatedAt;
 	}
 
+	public String getDetail() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
 }
