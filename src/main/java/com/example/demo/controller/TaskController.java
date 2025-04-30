@@ -83,13 +83,14 @@ public class TaskController {
 
 		// バリデーションチェックでエラーがある場合は変更画面に戻る
 		if (bindingResult.hasErrors()) {
+			System.out.println("確認画面でエラー、編集画面に戻ります");
 			return "task/edit";
 		}
 
 		model.addAttribute("taskForm", taskForm);
 		return "task/confirm";
 	}
-
+	
 	@PostMapping(value = "/task/save")
 	public String saveTask(@Validated TaskForm taskForm, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes, Model model) {
@@ -97,27 +98,20 @@ public class TaskController {
 		// バリデーションチェック
 		if (bindingResult.hasErrors()) {
 			// バリデーションエラーがある場合は変更画面に遷移
+			System.out.println("保存画面でエラー、編集画面に戻ります");
 			return "task/edit";
 		}
 
-//		// 保存処理
-//		String completeMessage = taskService.save(taskForm);
-//
-//		// redirect先に値を渡す
-//		redirectAttributes.addFlashAttribute("completeMessage", completeMessage);
-//
-//		return "redirect:/task/complete";
-		
-	    // 保存処理
-	    try {
-	        String completeMessage = taskService.save(taskForm);
-	        redirectAttributes.addFlashAttribute("completeMessage", completeMessage);
-	        return "redirect:/task/complete";
-	    } catch (Exception e) {
-	        // 例外発生時にエラーメッセージを出力
-	        e.printStackTrace();
-	        return "task/edit";  // 編集画面に戻る
-	    }
+		System.out.println("保存対象 TaskForm: " + taskForm.getTitle() + " / " + taskForm.getDetail());
+
+		// 保存処理
+		String completeMessage = taskService.save(taskForm);
+		System.out.println("保存完了メッセージ: " + completeMessage);
+
+		// redirect先に値を渡す
+		redirectAttributes.addFlashAttribute("completeMessage", completeMessage);
+
+		return "redirect:/task/complete";
 	}
 
 	@GetMapping("/task/complete")
