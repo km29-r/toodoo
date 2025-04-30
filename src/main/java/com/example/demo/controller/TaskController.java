@@ -144,5 +144,11 @@ public class TaskController {
 		model.addAttribute("taskForm", taskForm);
 		return "task/edit";
 	}
+	
+	@GetMapping("/")
+	public String index() {
+	    return "index";
+	}
+
 
 }
