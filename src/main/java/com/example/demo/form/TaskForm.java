@@ -37,6 +37,8 @@ public class TaskForm {
 	// 更新日時
 	private LocalDateTime updatedAt;
 
+	private String detail;
+
 	public int getTaskId() {
 		return taskId;
 	}
@@ -86,8 +88,11 @@ public class TaskForm {
 	}
 
 	public String getDetail() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 
 }
