@@ -16,6 +16,6 @@ public interface TaskMapper {
 
 	int update(Task task);
 
-	int delete(int taskId);//なぜint？
+	int delete(int taskId);//Q.なぜint？A.削除操作に成功した行数を返すため
 
 }

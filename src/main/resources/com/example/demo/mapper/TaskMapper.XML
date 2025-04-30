@@ -44,7 +44,7 @@
 	</update>
 	
 	<delete id="delete">
-		DELETE FROM task WHERE taskId = #{taskId} AND deleteFlg = false;
+		DELETE FROM task WHERE task_id = #{taskId} AND delete_flg = false;
 	</delete>
 </mapper>
 
