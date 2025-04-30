@@ -16,7 +16,7 @@
 		<!-- 新規タスクの登録 -->
 		INSERT INTO public.task
 		(title, description, deadline,
-		status,created_at,updated_at, delete_flg)
+		status,createdAt,updatedAt, delete_Flg)
 		VALUES
 		(#{title},
 		#{description}, #{deadline},
@@ -25,7 +25,7 @@
 
 	<!-- タスクIDを指定してタスクを取得 -->
 	<select id="getTask" resultType="com.example.demo.entity.Task">
-		SELECT * FROM public.task WHERE taskId
+		SELECT * FROM public.task WHERE task_Id
 		= #{taskId} and delete_flg = false;
 	</select>
 	<!-- WHERE taskIdとしていたが、DBの実際のカラム名はtask_id そんなことなかった-->
@@ -37,14 +37,14 @@
 		description = #{description},
 		deadline = #{deadline},
 		status = #{status},
-		updated_at = CURRENT_TIMESTAMP
-		WHERE taskId = #{taskId}<!-- task_idがtaskIdのままだった そんなことなかった-->
+		updated_At = CURRENT_TIMESTAMP
+		WHERE task_Id = #{taskId}<!-- task_idがtaskIdのままだった そんなことなかった-->
 		<!-- AND updated_at = #{updatedAt} -->
 		;
 	</update>
 	
 	<delete id="delete">
-		DELETE FROM task where taskId = #{taskId} and deleteFlg = false;
+		DELETE FROM task WHERE taskId = #{taskId} AND deleteFlg = false;
 	</delete>
 </mapper>
 
